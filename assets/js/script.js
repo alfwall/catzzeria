@@ -16,24 +16,41 @@ $(document).ready(function () {
 
     
     // TODO: Check for saved data
-    var saveData = JSON.parse(localStorage.getItem("saveData") || "[]");
-
+    var saveData = JSON.parse(localStorage.getItem("saveData"));
+    console.log("saveData: ");
+    console.log(saveData);
     // TODO: If none, create empty save data
-    if (saveData == null || saveData == []) {
+    if (saveData == null) {
+        console.log("empty!")
         // Make new save data
+        $("#hireACat").hide();
+        $("#catCountLabel").hide();
     }
 
     // TODO: Create pizza button listener
-    pizzaSliceCount += 1;
+    $("#pizzaButton").click(function(){
+        pizzaSliceCount += 1;
+        $("#pizzaSliceCount").text(pizzaSliceCount);
+        if (pizzaSliceCount >= 10) {
+            $("#hireACat").show();
+        }
+    });
 
     // TODO: Create hire cat button listener
     // Don't hire a cat if you can't afford one
-    if (pizzaSliceCount < priceToHireACat) {
-        // return
-    }
-    catCount += 1;
-    pizzaSliceCount -= priceToHireACat;
-    priceToHireACat *= 1.5;
+    $("#hireACat").click(function() {
+        if (pizzaSliceCount < priceToHireACat) {
+            return;
+        }
+        pizzaSliceCount -= priceToHireACat;
+        $("#pizzaSliceCount").text(pizzaSliceCount);
+        catCount += 1;
+        $("#catCount").text(catCount);
+        $("#catCountLabel").show();
+        priceToHireACat *= 1.5;
+        priceToHireACat = Math.floor(priceToHireACat);
+        $("#hireACatCost").text(priceToHireACat);
+    });
 
 
     // TODO: Create event that happens every second
