@@ -23,7 +23,7 @@ There's gonna be a group presentation, and we'll have to demo it. These are the 
 
 
 ## TODO (Development)
-- [ ] Agree on a team name!
+- [x] Agree on a team name!
     - [ ] Change the name of the repo and any references to LANTA if is changed. 
 - [x] Create skeleton of project, folder structure with js and css and images in subfolders.
 - [ ] "Use a CSS framework other than Bootstrap."
@@ -40,15 +40,30 @@ There's gonna be a group presentation, and we'll have to demo it. These are the 
 
 
 ## User Story
-AS AN ???????????????????,
-I WANT to ??????????????????,
-SO THAT ??????????????????????.
+AS A user on the internet,
+I WANT to play a silly game
+SO THAT I can be entertained by funny cats making pizzas.
 
 ## Acceptance Criteria
-GIVEN ????????????????...
+GIVEN that I've not played before,
 
-WHEN ????????????????????,
-THEN ????????????????????.
+WHEN I first open the page,
+THEN I see a big pizza button and the number 0 next to the word "pizza slices".
 
-WHEN ????????????????????,
-THEN ????????????????????.
+WHEN I click the big pizza button,
+THEN the number goes up.
+
+WHEN the number reaches 10,
+THEN a new button appears with the phrase "hire a cat".
+
+WHEN I press the "hire a cat" button,
+THEN the pizza slices number subtracts by 10, and a new number appears next to the word "cats".
+
+WHEN I have any cats hired,
+THEN my pizza slice number goes up automatically every 1 second.
+
+WHEN I try to press the "hire a cat" button without enough pizza slices,
+THEN the button doesn't click.
+
+WHEN I successfully hire a cat,
+THEN the price of hiring cats goes up some amount.
