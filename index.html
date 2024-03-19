@@ -28,9 +28,37 @@
     </nav>
     <main class="responsive">
         <div class="grid">
-            <div class="s6">
-                <!-- Pizza button (image) -->
-                <button id="pizzaButton">PIZZA</button>
+          <div class="s6">
+            <h3>Pane 1</h3>
+          </div>
+          <div class="s6">
+            <h3>Pane 2</h3>
+          </div>
+        </div>
+      </main>
+    <!-- Top bar of main page, consists of icon, current score, about/guide button that
+    navigates to about/guide page, and buttons for start and reset game -->
+        <nav class="guide_nav_bar">
+            <!-- If we wanted to create a custom icon for our game -->
+            <h1><i class="icon"></i></h1>
+            <h2><span class="score"></span></h2>
+            <button class="start" type="button">Start</button>
+            <button id="resetButton" class="reset" type="button">Reset</button>
+            <button class="guide" type="button">About/Guide</button>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- Pizza button (image) -->
+        <button id="save-button">Save</button>
+        <button id="pizzaButton">PIZZA</button>
+
+        <!-- Hire A Cat button -->
+        <button id="hireACat">Hire a Cat (<span id="hireACatCost">10</span>)</button>
+
+        <!-- Pizza Slice count label + number -->
+        <label>Pizza Slices: <span id="pizzaSliceCount">0</span></label>
 
                 <!-- Hire A Cat button -->
                 <button id="hireACat">Hire a Cat (<span id="hireACatCost">10</span>)</button>
