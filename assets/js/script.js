@@ -15,9 +15,24 @@ $(document).ready(function () {
 
     // TODO: make Reset button event listener
 
-    
+    var defaultSave = {
+        "pizzaSliceCount": 0,
+        "catsHiredCount": 0
+    }
+    localStorage.setItem("defaultSave", JSON.stringify(defaultSave));
+
+    $("#save-button").click(function () {
+        var newSave = {
+            "pizzas": pizzaSliceCount,
+            "cat count": catCount,
+         }
+         console.log(newSave)
+        localStorage.setItem("defaultSave", JSON.stringify(newSave))
+        // defaultSave = pizzaSliceCount
+        // catsHiredCount
+    })
     // TODO: Check for saved data
-    var saveData = JSON.parse(localStorage.getItem("saveData"));
+    var saveData = JSON.parse(localStorage.getItem("defaultSave"));
     console.log("saveData: ");
     console.log(saveData);
     // TODO: If none, create empty save data
