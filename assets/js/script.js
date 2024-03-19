@@ -3,8 +3,7 @@
 //    window.location.replace("./Project-LANTA/guide.html");
 //});
 
-// add return button event
-// add start button function + event
+// add return button event?
 // add reset button function + event
 
 $(document).ready(function () {
@@ -13,20 +12,25 @@ $(document).ready(function () {
     var catCount = 0;
     var priceToHireACat = 10;
 
-    // TODO: make Reset button event listener
-
     var defaultSave = {
         "pizzaSliceCount": 0,
         "catsHiredCount": 0
     }
     localStorage.setItem("defaultSave", JSON.stringify(defaultSave));
 
+    // TODO: make Reset button event listener
+    $("#resetButton").click(function () {
+        var reset = defaultSave
+        localStorage.setItem("defaultSave", JSON.stringify(defaultSave));
+
+    })
+
     $("#save-button").click(function () {
         var newSave = {
             "pizzas": pizzaSliceCount,
             "cat count": catCount,
-         }
-         console.log(newSave)
+        }
+        console.log(newSave)
         localStorage.setItem("defaultSave", JSON.stringify(newSave))
         // defaultSave = pizzaSliceCount
         // catsHiredCount
@@ -44,7 +48,7 @@ $(document).ready(function () {
     }
 
     // TODO: Create pizza button listener
-    $("#pizzaButton").click(function(){
+    $("#pizzaButton").click(function () {
         pizzaSliceCount += 1;
         $("#pizzaSliceCount").text(pizzaSliceCount);
         if (pizzaSliceCount >= 10) {
@@ -54,7 +58,7 @@ $(document).ready(function () {
 
     // TODO: Create hire cat button listener
     // Don't hire a cat if you can't afford one
-    $("#hireACat").click(function() {
+    $("#hireACat").click(function () {
         if (pizzaSliceCount < priceToHireACat) {
             return;
         }
@@ -72,6 +76,6 @@ $(document).ready(function () {
     // TODO: Create event that happens every second
     if (pizzaSliceCount >= 10) {
         // Reveal "hire a cat" button
-        
+
     }
 });
