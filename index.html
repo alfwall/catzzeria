@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="./assets/css/reset.css" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Catzzeria!</title>
     <link rel="stylesheet" href="./assets/css/style.css">
   </head>
@@ -34,20 +37,39 @@
       </main>
     <!-- Top bar of main page, consists of icon, current score, about/guide button that
     navigates to about/guide page, and buttons for start and reset game -->
-    <nav class="guide_nav_bar">
-        <!-- If we wanted to create a custom icon for our game -->
-        <h1><i class="icon"></i></h1>
-        <h2><span class="score"></span></h2>
-        <button class="start" type="button">Start</button>
-        <button class="reset" type="button">Reset</button>
-        <button class="guide" type="button">About/Guide</button>
-    </nav>
-    <!-- Left portion of main page, will contain pizza image (clickable) and perhaps other
+        <nav class="guide_nav_bar">
+            <!-- If we wanted to create a custom icon for our game -->
+            <h1><i class="icon"></i></h1>
+            <h2><span class="score"></span></h2>
+            <button class="start" type="button">Start</button>
+            <button id="resetButton" class="reset" type="button">Reset</button>
+            <button class="guide" type="button">About/Guide</button>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- Pizza button (image) -->
+        <button id="pizzaButton">PIZZA</button>
+
+        <!-- Hire A Cat button -->
+        <button id="hireACat">Hire a Cat (<span id="hireACatCost">10</span>)</button>
+
+        <!-- Pizza Slice count label + number -->
+        <label>Pizza Slices: <span id="pizzaSliceCount">0</span></label>
+
+        <!-- Cat count label + number -->
+        <label id="catCountLabel">Cats: <span id="catCount">0</span></label>
+
+
+
+        <!-- Left portion of main page, will contain pizza image (clickable) and perhaps other
     assets we may want to include -->
-    <div class="Pizza-Time!">
-        <div class="Pizza_Image">
-            <h2>Bake that Pizza!</h2>
-            <img src="./tbd.jpg"/>
+        <div class="Pizza-Time!">
+            <div class="Pizza_Image">
+                <h2>Bake that Pizza!</h2>
+                <img src="./tbd.jpg" />
+            </div>
         </div>
     </div>
   </main>
@@ -56,5 +78,6 @@
     <link href="https://cdn.jsdelivr.net/npm/beercss@3.5.1/dist/cdn/beer.min.css" rel="stylesheet" />
     <script type="module" src="https://cdn.jsdelivr.net/npm/beercss@3.5.1/dist/cdn/beer.min.js"></script>
     <script type="module" src="https://cdn.jsdelivr.net/npm/material-dynamic-colors@1.1.0/dist/cdn/material-dynamic-colors.min.js"></script>
+
 </body>
 </html>
