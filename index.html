@@ -8,40 +8,34 @@
     <link rel="stylesheet" href="./style.css">
   </head>
   <body>
-    <!-- Top bar of main page, consists of icon, current score, about/guide button that
-    navigates to about/guide page, and buttons for start and reset game -->
-    <nav class="guide_nav_bar">
-        <!-- If we wanted to create a custom icon for our game -->
-        <h1><i class="icon"></i></h1>
-        <h2><span class="score"></span></h2>
-        <button class="start" type="button">Start</button>
-        <button class="reset" type="button">Reset</button>
-        <button class="guide" type="button">About/Guide</button>
-    </nav>
-    <!-- Left portion of main page, will contain pizza image (clickable) and perhaps other
-    assets we may want to include -->
-    <div class="Pizza-Time!">
-        <div class="Pizza_Image">
-            <h2>Bake that Pizza!</h2>
-            <img src="./tbd.jpg"/>
-        </div>
+  <nav class="left">
+    <a>
+      <i>home</i>
+      <div>Home</div>
+    </a>
+    <a>
+      <i>search</i>
+      <div>Search</div>
+    </a>
+    <a>
+      <i>share</i>
+      <div>share</div>
+    </a>
+  </nav>
+  <main class="responsive">
+    <div class="grid">
+      <div class="s6">
+        <h3>Pane 1</h3>
+      </div>
+      <div class="s6">
+        <h3>Pane 2</h3>
+      </div>
     </div>
-    <!-- Right portion of main page, will contain all cats currently recruited in user's army,
-    including active and sleeping cats -->
-    <div class="cat_army">
-        <div class="staring_kitties">
-            <h3>Active Cat Army</h3>
-            <img src="./1stack.png"/>
-            <img src="./10stack.png"/>
-            <img src="./100stack.png"/>
-        </div>
-        <div class="sleepy_kitties">
-            <h3>Recuperating</h3>
-            <img src="./1stack.png"/>
-            <img src="./10stack.png"/>
-            <img src="./100stack.png"/>
-        </div>
+  </main>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="./assets/js/UI.js" ></script>
-</body>
+    <link href="https://cdn.jsdelivr.net/npm/beercss@3.5.1/dist/cdn/beer.min.css" rel="stylesheet" />
+    <script type="module" src="https://cdn.jsdelivr.net/npm/beercss@3.5.1/dist/cdn/beer.min.js"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/material-dynamic-colors@1.1.0/dist/cdn/material-dynamic-colors.min.js"></script>
+  </body>
 </html>
