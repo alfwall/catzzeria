@@ -13,7 +13,7 @@ $(document).ready(function () {
     var priceToHireACat = 10;
 
     // TODO: make Reset button event listener
-    $("#resetbtn").click(function () {
+    $("#resetBtn").click(function () {
         var newSave = {
             "pizzas": 0,
             "cat count": 0,
@@ -22,7 +22,7 @@ $(document).ready(function () {
         localStorage.setItem("defaultSave", JSON.stringify(newSave))
     })
 
-    $("#savebtn").click(function () {
+    $("#saveBtn").click(function () {
         var newSave = {
             "pizzas": pizzaSliceCount,
             "cat count": catCount,
