@@ -11,7 +11,7 @@ $(document).ready(function () {
     var pizzaSliceCount = 0;
     var catCount = 0;
     var priceToHireACat = 10;
-
+    var weatherID = $("#api-cat")
     // TODO: make Reset button event listener
     $("#resetBtn").click(function () {
         var newSave = {
@@ -76,6 +76,44 @@ $(document).ready(function () {
         // Reveal "hire a cat" button
 
     }
+    const APIkey = "43d3ce9a4d6be02e5f3dbc9ba49a17b0"
+    var apiURL = 'http://api.openweathermap.org/geo/1.0/direct?q={cityName}&limit=5&units=imperial&appid=' + APIkey;
+    var weatherAPI = "https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&units=imperial&appid=" + APIkey;
+    
+    function showWeather(weatherID) {
+        var validURL = apiURL.replace("{cityName}",weatherID);
+    
+        $.ajax({
+        url: validURL,
+        method: 'GET',
+        success: function (response) {
+            // Handle the API response here
+            console.log(response);
+            var json = JSON.parse(JSON.stringify(response));
+            getWeather(json[0].lat, json[0].lon)
+        },
+        error: function (xhr, status, error) {
+            // Handle errors here
+            // console.error(status, error);
+        }})
+    }
+    function getWeather (lat, lon) {
+        var currentAPI = "https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&units=imperial&appid=" + APIkey;
+        var currentURL = currentAPI.replace("{lat}", lat);
+        var currentURL = currentURL.replace("{lon}", lon);
+        $.ajax({
+            url: currentURL,
+            method: 'GET',
+            success: function (response) {
+                console.log(response)
+            },
+            error: function (xhr, status, error) {
+                // Handle errors here
+                console.error(status, error);
+            }
+        });
+    }
+    showWeather(weatherID)
 });
 
 //Every 1 second, pizza slices should increase based on # of cats (Adjoa)
