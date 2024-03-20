@@ -20,7 +20,6 @@ $(document).ready(function () {
         }
         console.log(newSave)
         localStorage.setItem("defaultSave", JSON.stringify(newSave))
-
     })
 
     $("#save-button").click(function () {
@@ -43,7 +42,8 @@ $(document).ready(function () {
         // Make new save data
         $("#hireACat").hide();
         $("#catCountLabel").hide();
-    }
+    } $("#pizzaSliceCount").text(saveData["pizzas"])
+    $("#catCount").text(saveData["cat count"])
 
     // TODO: Create pizza button listener
     $("#pizzaButton").click(function () {
@@ -77,7 +77,6 @@ $(document).ready(function () {
 
     }
 });
-
 
 //Every 1 second, pizza slices should increase based on # of cats (Adjoa)
 //Every 1 minute (arbitrarily longer amount of time), check the value of [Pizza Company] stocks, print that number somewhere beneath the Pizza button
