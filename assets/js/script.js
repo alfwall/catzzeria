@@ -12,20 +12,17 @@ $(document).ready(function () {
     var catCount = 0;
     var priceToHireACat = 10;
 
-    var defaultSave = {
-        "pizzaSliceCount": 0,
-        "catsHiredCount": 0
-    }
-    localStorage.setItem("defaultSave", JSON.stringify(defaultSave));
-
     // TODO: make Reset button event listener
-    $("#resetButton").click(function () {
-        var reset = defaultSave
-        localStorage.setItem("defaultSave", JSON.stringify(defaultSave));
-
+    $("#resetBtn").click(function () {
+        var newSave = {
+            "pizzas": 0,
+            "cat count": 0,
+        }
+        console.log(newSave)
+        localStorage.setItem("defaultSave", JSON.stringify(newSave))
     })
 
-    $("#savebtn").click(function () {
+    $("#saveBtn").click(function () {
         var newSave = {
             "pizzas": pizzaSliceCount,
             "cat count": catCount,
@@ -45,7 +42,8 @@ $(document).ready(function () {
         // Make new save data
         $("#hireACat").hide();
         $("#catCountLabel").hide();
-    }
+    } $("#pizzaSliceCount").text(saveData["pizzas"])
+    $("#catCount").text(saveData["cat count"])
 
     // TODO: Create pizza button listener
     $("#pizzaButton").click(function () {
@@ -79,3 +77,8 @@ $(document).ready(function () {
 
     }
 });
+
+//Every 1 second, pizza slices should increase based on # of cats (Adjoa)
+//Every 1 minute (arbitrarily longer amount of time), check the value of [Pizza Company] stocks, print that number somewhere beneath the Pizza button
+//Every 1 minute (arbitrarily longer amount of time) check the weather in Italy or something, print the current temperature somewhere beneath the Pizza button
+//Reset button should create a modal that asks if you're REALLY sure you wanna lose your save data (pizza count and cat count)
