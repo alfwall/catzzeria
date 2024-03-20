@@ -25,7 +25,7 @@ $(document).ready(function () {
 
     })
 
-    $("#save-button").click(function () {
+    $("#savebtn").click(function () {
         var newSave = {
             "pizzas": pizzaSliceCount,
             "cat count": catCount,
