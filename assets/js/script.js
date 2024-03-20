@@ -22,7 +22,7 @@ $(document).ready(function () {
         localStorage.setItem("defaultSave", JSON.stringify(newSave))
     })
 
-    $("#save-button").click(function () {
+    $("#savebtn").click(function () {
         var newSave = {
             "pizzas": pizzaSliceCount,
             "cat count": catCount,
