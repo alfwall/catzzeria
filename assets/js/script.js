@@ -13,9 +13,9 @@ $(document).ready(function () {
             "pizzas": newPizzaCount,
             "cat_count": newCatCount,
             "hire_a_cat_price": newCatPrice
-        }
-        //console.log(newSave)
-        localStorage.setItem("defaultSave", JSON.stringify(newSave))
+        };
+        console.log(newSave);
+        localStorage.setItem("defaultSave", JSON.stringify(newSave));
 
         pizzaSliceCount = newPizzaCount;
         $("#pizzaSliceCount").text(pizzaSliceCount);
@@ -29,14 +29,14 @@ $(document).ready(function () {
     // Check for saved data
     var saveData = JSON.parse(localStorage.getItem("defaultSave"));
     console.log("saveData: ");
-    console.log(saveData);
     // If none, create empty save data
     if (saveData == null) {
         console.log("NEW SAVE!!")
         // Make new save data
         SaveData();
     }
-
+    
+    saveData = JSON.parse(localStorage.getItem("defaultSave"));
     pizzaSliceCount = saveData["pizzas"];
     $("#pizzaSliceCount").text(pizzaSliceCount);
     catCount = saveData["cat_count"];
