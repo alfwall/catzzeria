@@ -3,7 +3,6 @@ $(document).ready(function () {
     var pizzaSliceCount = 0;
     var catCount = 0;
     var priceToHireACat = 10;
-    var weatherID = "Rome";
 
     // Helper function that updates the save data. If no values are provided,
     // it assumes that you're resetting the game.
@@ -30,14 +29,14 @@ $(document).ready(function () {
 
     // Check for saved data
     var saveData = JSON.parse(localStorage.getItem("defaultSave"));
-    console.log("saveData: ");
+    //console.log("saveData: ");
     // If none, create empty save data
     if (saveData == null) {
         console.log("NEW SAVE!!")
         // Make new save data
         SaveData();
     }
-    
+
     // 
     saveData = JSON.parse(localStorage.getItem("defaultSave"));
     pizzaSliceCount = saveData["pizzas"];
@@ -46,7 +45,8 @@ $(document).ready(function () {
     $("#catCount").text(catCount);
     priceToHireACat = saveData["hire_a_cat_price"];
     $("#hireACatCost").text(priceToHireACat);
-    console.log("HIREACAT: " + $("#hireACatCost").text())
+    //console.log("HIREACAT: " + $("#hireACatCost").text())
+
 
     // On save, save current counts and values
     $("#saveBtn").click(function () {
@@ -54,7 +54,7 @@ $(document).ready(function () {
     })
 
     // On reset, save with default starting values
-    $("#resetBtn").click(function () {
+    $("#confirmResetBtn").click(function () {
         SaveData();
     })
 
@@ -99,37 +99,29 @@ $(document).ready(function () {
         }
     }
 
-    const APIkey = "43d3ce9a4d6be02e5f3dbc9ba49a17b0"
-    var apiURL = 'http://api.openweathermap.org/geo/1.0/direct?q={cityName}&limit=5&units=imperial&appid=' + APIkey;
-    var weatherAPI = "https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&units=imperial&appid=" + APIkey;
 
-    function showWeather(weatherID) {
-        var validURL = apiURL.replace("{cityName}", weatherID);
+    // TODO: Create event that happens every second
 
-        $.ajax({
-            url: validURL,
-            method: 'GET',
-            success: function (response) {
-                // Handle the API response here
-                console.log(response[0]);
-                var json = JSON.parse(JSON.stringify(response[0]));
-                getWeather(json.lat, json.lon)
-            },
-            error: function (xhr, status, error) {
-                // Handle errors here
-                // console.error(status, error);
-            }
-        })
-    }
+    // API Key: "888dd05a1aa34b87aaf706b79bdff608"
+    // "https://api.weatherbit.io/v2.0/current"	 
+    // "https://api.weatherbit.io/v2.0/current?lat=35.7796&lon=-78.6382&key=API_KEY&include="
+
+
+    // Uses WEATHERBIT
     function getWeather(lat, lon) {
-        var currentAPI = "https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&units=imperial&appid=" + APIkey;
+        const APIkey = "888dd05a1aa34b87aaf706b79bdff608"
+        var currentAPI = "https://api.weatherbit.io/v2.0/current?units=I&lat=35.7796&lon=-78.6382&key=" + APIkey;
         var currentURL = currentAPI.replace("{lat}", lat);
         var currentURL = currentURL.replace("{lon}", lon);
         $.ajax({
             url: currentURL,
             method: 'GET',
             success: function (response) {
-                console.log(response)
+                //console.log("Response from getWeather(): ")
+                //console.log(response["data"][0])
+                data = response["data"][0];
+                temperature = data["temp"];
+                console.log("Current temp: " + temperature + " F")
             },
             error: function (xhr, status, error) {
                 // Handle errors here
@@ -137,11 +129,11 @@ $(document).ready(function () {
             }
         });
     }
-    showWeather(weatherID)
 
+    getWeather()
+    
 
-
-    //Every 1 minute (arbitrarily longer amount of time), check the value of [Pizza Company] stocks, 
+    // Every 1 minute (arbitrarily longer amount of time), check the value of [Pizza Company] stocks, 
     // print that number somewhere beneath the Pizza button
     function GetPizzaStockValue() {
         apiKey = "cnsaef1r01qmmmfkvm00cnsaef1r01qmmmfkvm0g";
@@ -151,7 +143,7 @@ $(document).ready(function () {
             url: fetchURL,
             method: "GET",
             success: function (response) {
-                console.log("PIZZA STOCK RESPONSE");
+                //console.log("PIZZA STOCK RESPONSE");
                 console.log("Dominoes change in stock value: " + response["d"]);
             },
             error: function (xhr, status, error) {
@@ -160,7 +152,35 @@ $(document).ready(function () {
         });
     }
     GetPizzaStockValue();
+
+
+
+    // Modal
+    const modal = document.getElementById('modal');
+    const modalClose = document.querySelector('.modal-close');
+    const confirmResetBtn = document.getElementById('confirmResetBtn');
+
+    // Function to open modal
+    const openModal = () => {
+        modal.showModal();
+    };
+
+    // Function to close modal
+    const closeModal = () => {
+        modal.close();
+    };
+
+    // Add click event listener to the reset button
+    $("#resetBtn").click(openModal);
+
+
+    // Add click event listener to the modal close button
+    modalClose.addEventListener('click', closeModal);
+
+    // Add click event listener to the confirm reset button
+    confirmResetBtn.addEventListener('click', function () {
+        localStorage.clear();
+        SaveData();
+        closeModal();
+    });
 });
-
-
-//Reset button should create a modal that asks if you're REALLY sure you wanna lose your save data (pizza count and cat-count)
