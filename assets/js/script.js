@@ -112,7 +112,7 @@ $(document).ready(function () {
             method: 'GET',
             success: function (response) {
                 console.log(response)
-                var json = JSON.parse(JSON.stringify(response[0]));
+                var json = (JSON.stringify(response.data[0]));
                 // getWeather(json.lat, json.lon)
             },
             error: function (xhr, status, error) {
