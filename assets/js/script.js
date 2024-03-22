@@ -1,11 +1,12 @@
 $(document).ready(function () {
-    // TODO: make all important variables
+    // Make all important variables
     var pizzaSliceCount = 0;
     var catCount = 0;
     var priceToHireACat = 10;
     var weatherID = "Rome";
 
-    // Helper function that 
+    // Helper function that updates the save data. If no values are provided,
+    // it assumes that you're resetting the game.
     function SaveData(newPizzaCount = 0, newCatCount = 0, newCatPrice = 10) {
         console.log("SAVING!!");
         // Make new save data
@@ -16,12 +17,13 @@ $(document).ready(function () {
         };
         console.log(newSave);
         localStorage.setItem("defaultSave", JSON.stringify(newSave));
-
+        // Update the values
         pizzaSliceCount = newPizzaCount;
-        $("#pizzaSliceCount").text(pizzaSliceCount);
         catCount = newCatCount;
-        $("#catCount").text(catCount);
         priceToHireACat = newCatPrice;
+        // Update the displayed values
+        $("#pizzaSliceCount").text(pizzaSliceCount);
+        $("#catCount").text(catCount);
         $("#hireACatCost").text(priceToHireACat);
     }
 
@@ -36,6 +38,7 @@ $(document).ready(function () {
         SaveData();
     }
     
+    // 
     saveData = JSON.parse(localStorage.getItem("defaultSave"));
     pizzaSliceCount = saveData["pizzas"];
     $("#pizzaSliceCount").text(pizzaSliceCount);
@@ -45,25 +48,30 @@ $(document).ready(function () {
     $("#hireACatCost").text(priceToHireACat);
     console.log("HIREACAT: " + $("#hireACatCost").text())
 
+    // On save, save current counts and values
     $("#saveBtn").click(function () {
         SaveData(pizzaSliceCount, catCount, priceToHireACat);
     })
 
+    // On reset, save with default starting values
     $("#resetBtn").click(function () {
         SaveData();
     })
 
+    // On pizza button click, increase pizza slice count by 1
     $("#pizzaBtn").click(function () {
         pizzaSliceCount += 1;
         $("#pizzaSliceCount").text(pizzaSliceCount);
+        // TODO: On fresh save, having more than the initial pizza slice count
+        // needed to hire a cat reveals the cat section.
         if (pizzaSliceCount >= 10) {
             $("#hireACat").show();
         }
     });
 
-
-    // Don't hire a cat if you can't afford one
+    // On hire, increase the cat count
     $("#hireACat").click(function () {
+        // Don't hire a cat if you can't afford one
         if (pizzaSliceCount < priceToHireACat) {
             return;
         }
@@ -77,11 +85,13 @@ $(document).ready(function () {
         $("#hireACatCost").text(priceToHireACat);
     });
 
+    // Every second, increaes pizza slice count by cat count
     let intervalID;
     if (!intervalID) {
         intervalID = setInterval(getSlice, 1000);
     }
 
+    // As long as cat count is > 0, increase pizza slice count by cat count
     function getSlice() {
         if (catCount > 0) {
             pizzaSliceCount += catCount;
@@ -131,7 +141,8 @@ $(document).ready(function () {
 
 
 
-    //Every 1 minute (arbitrarily longer amount of time), check the value of [Pizza Company] stocks, print that number somewhere beneath the Pizza button
+    //Every 1 minute (arbitrarily longer amount of time), check the value of [Pizza Company] stocks, 
+    // print that number somewhere beneath the Pizza button
     function GetPizzaStockValue() {
         apiKey = "cnsaef1r01qmmmfkvm00cnsaef1r01qmmmfkvm0g";
         dominoesStockTicker = "DPZ";
