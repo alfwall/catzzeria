@@ -49,7 +49,7 @@ $(document).ready(function () {
         SaveData(pizzaSliceCount, catCount, priceToHireACat);
     })
 
-    $("#resetBtn").click(function () {
+    $("#confirmResetBtn").click(function () {
         SaveData();
     })
 
