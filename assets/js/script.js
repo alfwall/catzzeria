@@ -3,7 +3,6 @@ $(document).ready(function () {
     var pizzaSliceCount = 0;
     var catCount = 0;
     var priceToHireACat = 10;
-    var weatherID = "Rome";
 
     // Helper function that 
     function SaveData(newPizzaCount = 0, newCatCount = 0, newCatPrice = 10) {
@@ -44,8 +43,6 @@ $(document).ready(function () {
     priceToHireACat = saveData["hire_a_cat_price"];
     $("#hireACatCost").text(priceToHireACat);
     console.log("HIREACAT: " + $("#hireACatCost").text())
-
-
 
 
 
@@ -101,30 +98,13 @@ $(document).ready(function () {
 
     // TODO: Create event that happens every second
 
-    const APIkey = "43d3ce9a4d6be02e5f3dbc9ba49a17b0"
-    var apiURL = 'http://api.openweathermap.org/geo/1.0/direct?q={cityName}&limit=5&units=imperial&appid=' + APIkey;
-    var weatherAPI = "https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&units=imperial&appid=" + APIkey;
-
-    function showWeather(weatherID) {
-        var validURL = apiURL.replace("{cityName}", weatherID);
-
-        $.ajax({
-            url: validURL,
-            method: 'GET',
-            success: function (response) {
-                // Handle the API response here
-                console.log(response[0]);
-                var json = JSON.parse(JSON.stringify(response[0]));
-                getWeather(json.lat, json.lon)
-            },
-            error: function (xhr, status, error) {
-                // Handle errors here
-                // console.error(status, error);
-            }
-        })
-    }
+    // API Key: "888dd05a1aa34b87aaf706b79bdff608"
+    // "https://api.weatherbit.io/v2.0/current"	 
+    // "https://api.weatherbit.io/v2.0/current?lat=35.7796&lon=-78.6382&key=API_KEY&include="
+    
     function getWeather(lat, lon) {
-        var currentAPI = "https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&units=imperial&appid=" + APIkey;
+        const APIkey = "888dd05a1aa34b87aaf706b79bdff608"
+        var currentAPI = "https://api.weatherbit.io/v2.0/current?lat=35.7796&lon=-78.6382&key=" + APIkey;
         var currentURL = currentAPI.replace("{lat}", lat);
         var currentURL = currentURL.replace("{lon}", lon);
         $.ajax({
@@ -132,6 +112,8 @@ $(document).ready(function () {
             method: 'GET',
             success: function (response) {
                 console.log(response)
+                var json = JSON.parse(JSON.stringify(response[0]));
+                // getWeather(json.lat, json.lon)
             },
             error: function (xhr, status, error) {
                 // Handle errors here
@@ -139,7 +121,47 @@ $(document).ready(function () {
             }
         });
     }
-    showWeather(weatherID)
+        getWeather()
+    // showWeather(weatherID)
+    // const APIkey = "43d3ce9a4d6be02e5f3dbc9ba49a17b0"
+    // var apiURL = 'http://api.openweathermap.org/geo/1.0/direct?q={cityName}&limit=5&units=imperial&appid=' + APIkey;
+    // var weatherAPI = "https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&units=imperial&appid=" + APIkey;
+    // var weatherID = "Rome"
+    // function showWeather(weatherID) {
+    //     var validURL = apiURL.replace("{cityName}", weatherID);
+
+    //     $.ajax({
+    //         url: validURL,
+    //         method: 'GET',
+    //         success: function (response) {
+    //             // Handle the API response here
+    //             // console.log(response[0]);
+    //             var json = JSON.parse(JSON.stringify(response[0]));
+    //             getWeather(json.lat, json.lon)
+    //         },
+    //         error: function (xhr, status, error) {
+    //             // Handle errors here
+    //             // console.error(status, error);
+    //         }
+    //     })
+    // }
+    // function getWeather(lat, lon) {
+    //     var currentAPI = "https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&units=imperial&appid=" + APIkey;
+    //     var currentURL = currentAPI.replace("{lat}", lat);
+    //     var currentURL = currentURL.replace("{lon}", lon);
+    //     $.ajax({
+    //         url: currentURL,
+    //         method: 'GET',
+    //         success: function (response) {
+    //             console.log(response)
+    //         },
+    //         error: function (xhr, status, error) {
+    //             // Handle errors here
+    //             console.error(status, error);
+    //         }
+    //     });
+    // }
+    // showWeather(weatherID)
 });
 
 //Every 1 second, pizza slices should increase based on # of cats (Adjoa)
