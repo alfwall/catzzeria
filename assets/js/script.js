@@ -3,27 +3,35 @@ $(document).ready(function () {
     var pizzaSliceCount = 0;
     var catCount = 0;
     var priceToHireACat = 10;
+    var currentStockChange = 0;
+    var currentTemp = 0;
 
     // Helper function that updates the save data. If no values are provided,
     // it assumes that you're resetting the game.
-    function SaveData(newPizzaCount = 0, newCatCount = 0, newCatPrice = 10) {
+    function SaveData(newPizzaCount = 0, newCatCount = 0, newCatPrice = 10, newStockChange = 0, newTemp = 60) {
         console.log("SAVING!!");
         // Make new save data
         var newSave = {
             "pizzas": newPizzaCount,
             "cat_count": newCatCount,
-            "hire_a_cat_price": newCatPrice
+            "hire_a_cat_price": newCatPrice,
+            "recent_stock_change": newStockChange,
+            "current_temp": newTemp
         };
-        console.log(newSave);
+        //console.log(newSave);
         localStorage.setItem("defaultSave", JSON.stringify(newSave));
         // Update the values
         pizzaSliceCount = newPizzaCount;
         catCount = newCatCount;
         priceToHireACat = newCatPrice;
+        currentStockChange = newStockChange;
+        currentTemp = newTemp;
         // Update the displayed values
         $("#pizzaSliceCount").text(pizzaSliceCount);
         $("#catCount").text(catCount);
         $("#hireACatCost").text(priceToHireACat);
+        $("#currentPizzaStockChangeDisplay").text(currentStockChange);
+        $("#currentTempDisplay").text(currentTemp);
     }
 
 
@@ -37,20 +45,9 @@ $(document).ready(function () {
         SaveData();
     }
 
-    // 
-    saveData = JSON.parse(localStorage.getItem("defaultSave"));
-    pizzaSliceCount = saveData["pizzas"];
-    $("#pizzaSliceCount").text(pizzaSliceCount);
-    catCount = saveData["cat_count"];
-    $("#catCount").text(catCount);
-    priceToHireACat = saveData["hire_a_cat_price"];
-    $("#hireACatCost").text(priceToHireACat);
-    //console.log("HIREACAT: " + $("#hireACatCost").text())
-
-
     // On save, save current counts and values
     $("#saveBtn").click(function () {
-        SaveData(pizzaSliceCount, catCount, priceToHireACat);
+        SaveData(pizzaSliceCount, catCount, priceToHireACat, currentStockChange, currentTemp);
     })
 
     // On reset, save with default starting values
@@ -107,9 +104,9 @@ $(document).ready(function () {
     // "https://api.weatherbit.io/v2.0/current?lat=35.7796&lon=-78.6382&key=API_KEY&include="
 
 
-    // Uses WEATHERBIT
+    // Uses weatherbit to get the temperature in farentheit
     function getWeather(lat, lon) {
-        const APIkey = "888dd05a1aa34b87aaf706b79bdff608"
+        const APIkey = "888dd05a1aa34b87aaf706b79bdff608";
         var currentAPI = "https://api.weatherbit.io/v2.0/current?units=I&lat=35.7796&lon=-78.6382&key=" + APIkey;
         var currentURL = currentAPI.replace("{lat}", lat);
         var currentURL = currentURL.replace("{lon}", lon);
@@ -120,8 +117,9 @@ $(document).ready(function () {
                 //console.log("Response from getWeather(): ")
                 //console.log(response["data"][0])
                 data = response["data"][0];
-                temperature = data["temp"];
-                console.log("Current temp: " + temperature + " F")
+                currentTemp = data["temp"];
+                console.log("Current temp: " + currentTemp + " F");
+                $("#currentTempDisplay").text(currentTemp + " F")
             },
             error: function (xhr, status, error) {
                 // Handle errors here
@@ -129,9 +127,6 @@ $(document).ready(function () {
             }
         });
     }
-
-    getWeather()
-    
 
     // Every 1 minute (arbitrarily longer amount of time), check the value of [Pizza Company] stocks, 
     // print that number somewhere beneath the Pizza button
@@ -144,15 +139,22 @@ $(document).ready(function () {
             method: "GET",
             success: function (response) {
                 //console.log("PIZZA STOCK RESPONSE");
-                console.log("Dominoes change in stock value: " + response["d"]);
+                currentStockChange = response["d"];
+                console.log("Dominoes change in stock value: " + currentStockChange);
+                $("#currentPizzaStockChangeDisplay").text(currentStockChange);
             },
             error: function (xhr, status, error) {
                 console.error(status, error);
             }
         });
     }
-    GetPizzaStockValue();
 
+    // TODO: move this into 1-minute interval
+    getWeather()
+    GetPizzaStockValue();
+    
+
+    
 
 
     // Modal
