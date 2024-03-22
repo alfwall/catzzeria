@@ -45,20 +45,14 @@ $(document).ready(function () {
     $("#hireACatCost").text(priceToHireACat);
     console.log("HIREACAT: " + $("#hireACatCost").text())
 
-
-
-
-
     $("#saveBtn").click(function () {
         SaveData(pizzaSliceCount, catCount, priceToHireACat);
     })
 
-    // TODO: make Reset button event listener
     $("#resetBtn").click(function () {
         SaveData();
     })
 
-    // TODO: Create pizza button listener
     $("#pizzaBtn").click(function () {
         pizzaSliceCount += 1;
         $("#pizzaSliceCount").text(pizzaSliceCount);
@@ -68,8 +62,6 @@ $(document).ready(function () {
     });
 
 
-
-    // TODO: Create hire cat button listener
     // Don't hire a cat if you can't afford one
     $("#hireACat").click(function () {
         if (pizzaSliceCount < priceToHireACat) {
@@ -86,7 +78,6 @@ $(document).ready(function () {
     });
 
     let intervalID;
-
     if (!intervalID) {
         intervalID = setInterval(getSlice, 1000);
     }
@@ -95,11 +86,8 @@ $(document).ready(function () {
         if (catCount > 0) {
             pizzaSliceCount += catCount;
             $("#pizzaSliceCount").text(pizzaSliceCount);
-            //console.log(pizzaSliceCount);
         }
     }
-
-    // TODO: Create event that happens every second
 
     const APIkey = "43d3ce9a4d6be02e5f3dbc9ba49a17b0"
     var apiURL = 'http://api.openweathermap.org/geo/1.0/direct?q={cityName}&limit=5&units=imperial&appid=' + APIkey;
@@ -140,9 +128,28 @@ $(document).ready(function () {
         });
     }
     showWeather(weatherID)
+
+
+
+    //Every 1 minute (arbitrarily longer amount of time), check the value of [Pizza Company] stocks, print that number somewhere beneath the Pizza button
+    function GetPizzaStockValue() {
+        apiKey = "cnsaef1r01qmmmfkvm00cnsaef1r01qmmmfkvm0g";
+        dominoesStockTicker = "DPZ";
+        fetchURL = "https://finnhub.io/api/v1/quote?symbol=" + dominoesStockTicker + "&token=" + apiKey;
+        $.ajax({
+            url: fetchURL,
+            method: "GET",
+            success: function (response) {
+                console.log("PIZZA STOCK RESPONSE");
+                console.log("Dominoes change in stock value: " + response["d"]);
+            },
+            error: function (xhr, status, error) {
+                console.error(status, error);
+            }
+        });
+    }
+    GetPizzaStockValue();
 });
 
-//Every 1 second, pizza slices should increase based on # of cats (Adjoa)
-//Every 1 minute (arbitrarily longer amount of time), check the value of [Pizza Company] stocks, print that number somewhere beneath the Pizza button
-//Every 1 minute (arbitrarily longer amount of time) check the weather in Italy or something, print the current temperature somewhere beneath the Pizza button
+
 //Reset button should create a modal that asks if you're REALLY sure you wanna lose your save data (pizza count and cat-count)
