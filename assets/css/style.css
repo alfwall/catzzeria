@@ -17,14 +17,14 @@
 
     .s4 {
         grid-row: 1/ span 4;
-        grid-area: 1 / span 10;
-        padding-left: 4px;
+        grid-area: 1 / span 11;
+        padding-left: 32px;
     }
 
     .s8 {
         grid-row: 2/6;
-        grid-area: 2 / span 10;
-        padding-left: 4px;
+        grid-area: 2 / span 11;
+        padding-left: 32px;
     }
 
     .left {
