@@ -1,10 +1,10 @@
-# Team Lanta presents: something
+# Team Lanta presents: Cattzeria
 
 ## Description
 ??????????
 
 ## The Result
-[Click here!](DEPLOYED_URL_HERE)
+[Click here!](https://alfwall.github.io/catzzeria/)
 
 ![Screenshot of the deployed project.](SCREENSHOT_OF_PROJECT_IN_ASSETS)
 
@@ -24,18 +24,18 @@ There's gonna be a group presentation, and we'll have to demo it. These are the 
 
 ## TODO (Development)
 - [x] Agree on a team name!
-    - [ ] Change the name of the repo and any references to LANTA if is changed. 
+    - [x] Change the name of the repo and any references to LANTA if is changed. 
 - [x] Create skeleton of project, folder structure with js and css and images in subfolders.
-- [ ] "Use a CSS framework other than Bootstrap."
-    - [ ] Brainstorm some options? I don't recall any offhand.
-- [ ] "Be interactive (i.e.: accept and respond to user input)."
-- [ ] "Use at least 2 server-side API's."
-- [ ] "Include at least one modal, and does NOT use native browser alert, confirm, or prompt functionality."
-- [ ] "Use client-side storage to store persistent data."
-- [ ] "Be responsive." (Window size stuff, design for mobile devices first)
+- [x] "Use a CSS framework other than Bootstrap." Beer.css!
+    - [x] Brainstorm some options? I don't recall any offhand.
+- [x] "Be interactive (i.e.: accept and respond to user input)."
+- [x] "Use at least 2 server-side API's."
+- [x] "Include at least one modal, and does NOT use native browser alert, confirm, or prompt functionality."
+- [x] "Use client-side storage to store persistent data."
+- [x] "Be responsive." (Window size stuff, design for mobile devices first)
 - [ ] "Have a polished UI."
 - [ ] "Have a clean repository that meets quality coding standards (file structure, naming conventions, follows best practices for class/id-naming conventions, indentation, quality comments, etc.)."
-- [ ] Have a quality README (with unique name, description, technologies used, screenshot, and link to deployed application).
+- [x] Have a quality README (with unique name, description, technologies used, screenshot, and link to deployed application).
 - [ ] ALL OF US put a link to it in our portfolio project pages (from module 2).
 
 
