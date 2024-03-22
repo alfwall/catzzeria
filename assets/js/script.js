@@ -7,13 +7,14 @@ $(document).ready(function () {
 
     // Helper function that 
     function SaveData(newPizzaCount = 0, newCatCount = 0, newCatPrice = 10) {
+        console.log("SAVING!!");
         // Make new save data
         var newSave = {
             "pizzas": newPizzaCount,
             "cat_count": newCatCount,
             "hire_a_cat_price": newCatPrice
         }
-        console.log(newSave)
+        //console.log(newSave)
         localStorage.setItem("defaultSave", JSON.stringify(newSave))
 
         pizzaSliceCount = newPizzaCount;
@@ -29,13 +30,24 @@ $(document).ready(function () {
     var saveData = JSON.parse(localStorage.getItem("defaultSave"));
     console.log("saveData: ");
     console.log(saveData);
-
     // If none, create empty save data
     if (saveData == null) {
-        console.log("empty!")
+        console.log("NEW SAVE!!")
         // Make new save data
         SaveData();
     }
+
+    pizzaSliceCount = saveData["pizzas"];
+    $("#pizzaSliceCount").text(pizzaSliceCount);
+    catCount = saveData["cat_count"];
+    $("#catCount").text(catCount);
+    priceToHireACat = saveData["hire_a_cat_price"];
+    $("#hireACatCost").text(priceToHireACat);
+    console.log("HIREACAT: " + $("#hireACatCost").text())
+
+
+
+
 
     $("#saveBtn").click(function () {
         SaveData(pizzaSliceCount, catCount, priceToHireACat);
@@ -75,10 +87,7 @@ $(document).ready(function () {
 
 
     // TODO: Create event that happens every second
-    if (pizzaSliceCount >= 10) {
-        // Reveal "hire a cat" button
 
-    }
     const APIkey = "43d3ce9a4d6be02e5f3dbc9ba49a17b0"
     var apiURL = 'http://api.openweathermap.org/geo/1.0/direct?q={cityName}&limit=5&units=imperial&appid=' + APIkey;
     var weatherAPI = "https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&units=imperial&appid=" + APIkey;
