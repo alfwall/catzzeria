@@ -1,0 +1,43 @@
+@media screen and (max-width: 500px) {
+    .column {
+      width: 100%;
+    }
+
+    main {
+        display: contents;
+    }
+
+    body {
+        display: grid;
+    }
+
+    .grid { 
+        margin-top: 35px;
+    }
+
+    .s4 {
+        grid-row: 1/ span 4;
+        grid-area: 1 / span 11;
+        padding-left: 32px;
+    }
+
+    .s8 {
+        grid-row: 2/6;
+        grid-area: 2 / span 11;
+        padding-left: 32px;
+    }
+
+    .left {
+        position: absolute;
+        display: contents;
+        
+    }
+
+    #hireBtn {
+        padding: 1%;
+    }
+
+    #pizzaBtn {
+        padding: 1%;
+    }
+  }

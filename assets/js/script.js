@@ -3,7 +3,7 @@ $(document).ready(function () {
     var pizzaSliceCount = 0;
     var catCount = 0;
     var priceToHireACat = 10;
-    var weatherID = $("#api-cat")
+    var weatherID = "Rome";
 
     // Helper function that 
     function SaveData(newPizzaCount = 0, newCatCount = 0, newCatPrice = 10) {
@@ -59,7 +59,7 @@ $(document).ready(function () {
     })
 
     // TODO: Create pizza button listener
-    $("#pizzaButton").click(function () {
+    $("#pizzaBtn").click(function () {
         pizzaSliceCount += 1;
         $("#pizzaSliceCount").text(pizzaSliceCount);
         if (pizzaSliceCount >= 10) {
@@ -85,6 +85,19 @@ $(document).ready(function () {
         $("#hireACatCost").text(priceToHireACat);
     });
 
+    let intervalID;
+
+    if (!intervalID) {
+        intervalID = setInterval(getSlice, 1000);
+    }
+
+    function getSlice() {
+        if (catCount > 0) {
+            pizzaSliceCount += catCount;
+            $("#pizzaSliceCount").text(pizzaSliceCount);
+            //console.log(pizzaSliceCount);
+        }
+    }
 
     // TODO: Create event that happens every second
 
@@ -100,9 +113,9 @@ $(document).ready(function () {
             method: 'GET',
             success: function (response) {
                 // Handle the API response here
-                console.log(response);
-                var json = JSON.parse(JSON.stringify(response));
-                getWeather(json[0].lat, json[0].lon)
+                console.log(response[0]);
+                var json = JSON.parse(JSON.stringify(response[0]));
+                getWeather(json.lat, json.lon)
             },
             error: function (xhr, status, error) {
                 // Handle errors here
