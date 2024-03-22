@@ -70,12 +70,26 @@ $(document).ready(function () {
         $("#hireACatCost").text(priceToHireACat);
     });
 
+    let intervalID;
+
+    if (!intervalID) {
+       intervalID = setInterval(getSlice, 1000);
+       }
+
+    function getSlice() {
+        if (catCount>0) {
+                pizzaSliceCount+=catCount;
+                $("#pizzaSliceCount").text(pizzaSliceCount);
+            console.log(pizzaSliceCount);
+        }
+    }
 
     // TODO: Create event that happens every second
     if (pizzaSliceCount >= 10) {
         // Reveal "hire a cat" button
 
     }
+
     const APIkey = "43d3ce9a4d6be02e5f3dbc9ba49a17b0"
     var apiURL = 'http://api.openweathermap.org/geo/1.0/direct?q={cityName}&limit=5&units=imperial&appid=' + APIkey;
     var weatherAPI = "https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&units=imperial&appid=" + APIkey;
