@@ -153,3 +153,42 @@ $(document).ready(function () {
 
 
 //Reset button should create a modal that asks if you're REALLY sure you wanna lose your save data (pizza count and cat-count)
+//Every 1 second, pizza slices should increase based on # of cats (Adjoa)
+//Every 1 minute (arbitrarily longer amount of time), check the value of [Pizza Company] stocks, print that number somewhere beneath the Pizza button
+//Every 1 minute (arbitrarily longer amount of time) check the weather in Italy or something, print the current temperature somewhere beneath the Pizza button
+//Reset button should create a modal that asks if you're REALLY sure you wanna lose your save data (pizza count and cat-count)
+$(document).ready(function () {
+    // Modal
+    const modal = document.getElementById('modal');
+    const modalClose = document.querySelector('.modal-close');
+    const confirmResetBtn = document.getElementById('confirmResetBtn');
+
+    // Function to open modal
+    const openModal = () => {
+        modal.showModal();
+    };
+
+    // Function to close modal
+    const closeModal = () => {
+        modal.close();
+    };
+
+    // Add click event listener to the reset button
+    $("#resetBtn").click(openModal);
+
+
+    // Add click event listener to the modal close button
+    modalClose.addEventListener('click', closeModal);
+
+    // Add click event listener to the confirm reset button
+    confirmResetBtn.addEventListener('click', function () {
+        var newSave = {
+            "pizzas": 0,
+            "cat count": 0,
+        }
+        console.log(newSave)
+        localStorage.setItem("defaultSave", JSON.stringify(newSave))
+        localStorage.clear();
+        closeModal();
+    });
+});
