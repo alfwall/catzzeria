@@ -117,6 +117,9 @@ $(document).ready(function () {
             url: currentURL,
             method: 'GET',
             success: function (response) {
+                console.log(response)
+                var json = (JSON.stringify(response.data[0]));
+                // getWeather(json.lat, json.lon)
                 //console.log("Response from getWeather(): ")
                 //console.log(response["data"][0])
                 data = response["data"][0];
