@@ -4,7 +4,7 @@ $(document).ready(function () {
     var catCount = 0;
     var priceToHireACat = 10;
     var currentStockChange = 0;
-    var currentTemp = 0;
+    var currentTemp = 60;
 
     // Helper function that updates the save data. If no values are provided,
     // it assumes that you're resetting the game.
