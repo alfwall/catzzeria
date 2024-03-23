@@ -96,6 +96,18 @@ $(document).ready(function () {
         }
     }
 
+    let stockWeatherInterval;
+    if (!stockWeatherInterval) {
+        stockWeatherInterval = setInterval(updateWeatherStock, 60000);
+        console.log(stockWeatherInterval);
+    }
+
+    function updateWeatherStock() {
+        getWeather()
+        GetPizzaStockValue();
+        console.log(updateWeatherStock);
+    }
+
 
     // TODO: Create event that happens every second
 
