@@ -1,3 +1,15 @@
+.pizzaStock {
+    display: flex;
+    margin-top: 58px;
+    justify-content: center;
+}
+
+.tempOutside {
+    display: flex;
+    margin-top: 58px;
+    justify-content: center;
+}
+
 @media screen and (max-width: 500px) {
     .column {
       width: 100%;
