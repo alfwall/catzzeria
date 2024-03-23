@@ -48,13 +48,13 @@ WHEN I successfully hire a cat,
 THEN the price of hiring cats goes up some amount.
 
 ## The Result
-[Click here!](DEPLOYED_URL_HERE)
+https://alfwall.github.io/catzzeria/
 
 ![alt text](image.png)
 
 ## Credits
 - [Josh Comeau's CSS reset](https://www.joshwcomeau.com/css/custom-css-reset/)
-- [Weatherbit API](https://api.weatherbit.io/)
+- [Weatherbit API](https://weatherbit.io/)
 - [FinnHub](https://finnhub.io)
 
 
