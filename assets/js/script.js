@@ -118,7 +118,7 @@ $(document).ready(function () {
 
     // Uses weatherbit to get the temperature in farentheit
     function getWeather(lat, lon) {
-        const APIkey = "888dd05a1aa34b87aaf706b79bdff608";
+        const APIkey = "68ae389dcec94915a0307cc63002bd7a";
         var currentAPI = "https://api.weatherbit.io/v2.0/current?units=I&lat=35.7796&lon=-78.6382&key=" + APIkey;
         var currentURL = currentAPI.replace("{lat}", lat);
         var currentURL = currentURL.replace("{lon}", lon);
