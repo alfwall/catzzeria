@@ -9,7 +9,7 @@ $(document).ready(function () {
     // Helper function that updates the save data. If no values are provided,
     // it assumes that you're resetting the game.
     function SaveData(newPizzaCount = 0, newCatCount = 0, newCatPrice = 10, newStockChange = 0, newTemp = 60) {
-        console.log("SAVING!!");
+        //console.log("SAVING!!");
         // Make new save data
         var newSave = {
             "pizzas": newPizzaCount,
@@ -40,7 +40,7 @@ $(document).ready(function () {
     //console.log("saveData: ");
     // If none, create empty save data
     if (saveData == null) {
-        console.log("NEW SAVE!!")
+        //console.log("NEW SAVE!!")
         // Make new save data
         SaveData();
     }
@@ -99,13 +99,13 @@ $(document).ready(function () {
     let stockWeatherInterval;
     if (!stockWeatherInterval) {
         stockWeatherInterval = setInterval(updateWeatherStock, 60000);
-        console.log(stockWeatherInterval);
+        //console.log(stockWeatherInterval);
     }
 
     function updateWeatherStock() {
         getWeather()
         GetPizzaStockValue();
-        console.log(updateWeatherStock);
+        //console.log(updateWeatherStock);
     }
 
 
@@ -126,19 +126,19 @@ $(document).ready(function () {
             url: currentURL,
             method: 'GET',
             success: function (response) {
-                console.log(response)
+                //console.log(response)
                 var json = (JSON.stringify(response.data[0]));
                 // getWeather(json.lat, json.lon)
                 //console.log("Response from getWeather(): ")
                 //console.log(response["data"][0])
                 data = response["data"][0];
                 currentTemp = data["temp"];
-                console.log("Current temp: " + currentTemp + " F");
+                //console.log("Current temp: " + currentTemp + " F");
                 $("#currentTempDisplay").text(currentTemp + " F")
             },
             error: function (xhr, status, error) {
                 // Handle errors here
-                console.error(status, error);
+                //console.error(status, error);
             }
         });
     }
@@ -155,11 +155,11 @@ $(document).ready(function () {
             success: function (response) {
                 //console.log("PIZZA STOCK RESPONSE");
                 currentStockChange = response["d"];
-                console.log("Dominoes change in stock value: " + currentStockChange);
+                //console.log("Dominoes change in stock value: " + currentStockChange);
                 $("#currentPizzaStockChangeDisplay").text(currentStockChange);
             },
             error: function (xhr, status, error) {
-                console.error(status, error);
+                //console.error(status, error);
             }
         });
     }
